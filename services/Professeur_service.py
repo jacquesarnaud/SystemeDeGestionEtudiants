@@ -36,3 +36,6 @@ class Professeurservice:
             return True
         else:
             return False
+        
+    def lister_etudiants_classe(self):
+        

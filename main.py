@@ -6,8 +6,6 @@ from config.Mes_constante import (
     MENU_PRINCIPALE, CONNECTER
 )
 from utils.admin import menu_admin
-from utils.etudiant import menu_etudiant
-from utils.professeur import menu_professeur
 
 def main():
 
@@ -37,9 +35,11 @@ def main():
                     if role == 'admin':
                         menu_admin(admin_service, connexion, logger, email)
                     elif role == 'professeur':
-                        menu_professeur(connexion, email, classe_id)
+                        # menu_professeur(connexion, email, classe_id)
+                        pass
                     elif role == 'etudiant':
-                        menu_etudiant(connexion, etudiant_id, email)
+                        # menu_etudiant(connexion, etudiant_id, email)
+                        pass
                     else:
                         print("Rôle inconnu, contactez l'administrateur.")
                 else:

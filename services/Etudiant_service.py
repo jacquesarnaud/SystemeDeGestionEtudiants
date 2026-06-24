@@ -4,7 +4,6 @@ from models.Absence_model import AbsenceModels
 from models.Matiere_model import MatiereModels
 from models.Professeur_model import ProfesseurModels
 
-
 class Etudiantservice:
 
     def __init__(self):

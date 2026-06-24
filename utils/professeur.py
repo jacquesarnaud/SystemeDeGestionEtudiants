@@ -5,12 +5,16 @@ from config.Mes_constante import (
     MENU_PROFESSEUR, GESTION_DES_NOTES_PROF,
     GESTION_DES_ABSENCES_PROF, MENU_ETUDIANT
 )
+from services.Professeur_service import Professeurservice
+from utils.saisie import pause,saisir_entier,saisir_note
+
 
 # ═══════════════════════════════════════════════════════
 #  MENU PROFESSEUR
 # ════════════════════════════════════════════════════════
 
 def menu_notes_professeur(prof_service: ProfesseurService, classe_id: int):
+    prof_service = Professeurservice
     while True:
         print(GESTION_DES_NOTES_PROF)
         choix = input("Veuillez choisir une option : ").strip()

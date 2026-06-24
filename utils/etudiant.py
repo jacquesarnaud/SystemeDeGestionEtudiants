@@ -1,33 +1,32 @@
-from services.Etudiant_service import EtudiantService
+from services.Etudiant_service import Etudiantservice
 from datetime import date as Date
-from config.Mes_constante import (
-    MENU_PROFESSEUR, GESTION_DES_NOTES_PROF,
-    GESTION_DES_ABSENCES_PROF, MENU_ETUDIANT
-)
+from config.Mes_constante import MENU_ETUDIANT
 from utils.saisie import pause
+from services.Admin_service import AdminService
 
 # ════════════════════════════════════════════════════════
 #  MENU ÉTUDIANT
 # ════════════════════════════════════════════════════════
 
-def menu_etudiant(connexion, etudiant_id: int, email: str):
-    etu_service = EtudiantService()
+def menu_etudiant(connexion, etudiant_id: int, email: str,matricule:str):
+    etu_service = Etudiantservice()
     while True:
         print(MENU_ETUDIANT)
         choix = input("Veuillez choisir une option : ").strip()
 
         if choix == '1':
-            notes = etu_service.voir_mes_notes(etudiant_id)
+            notes =etu_service.afficher_notes_etudiant(matricule)
+
             if notes:
                 print("\n── Mes notes ──")
                 for n in notes:
-                    prinf"  {n['nom_matiere']:<25} | {n['note']}/20"t()
+                    print(f" {n['nom_matiere']:<25} | {n['note']}/20")
             else:
                 print("Aucune note enregistrée.")
             pause()
 
         elif choix == '2':
-            moyennes = etu_service.moyenne_par_matiere(etudiant_id)
+            moyennes = etu_service.afficher_moyenne_etudiant(matricule)
             if moyennes:
                 print("\n── Mes moyennes par matière ──")
                 for m in moyennes:
@@ -45,7 +44,7 @@ def menu_etudiant(connexion, etudiant_id: int, email: str):
             pause()
 
         elif choix == '4':
-            absences = etu_service.voir_mes_absences(etudiant_id)
+            absences = etu_service.afficher_absences_etudiant(matricule)
             if absences:
                 print("\n── Mes absences ──")
                 for a in absences:

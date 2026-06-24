@@ -3,6 +3,7 @@ from utils.logger import LoggerUtils
 from config.Mes_constante import ( OPTION_PRINCIPALE_ADMIN,
     GESTION_DES_ETUDIANTS, GESTION_DES_PROFESSEURS,GESTION_DES_UTILISATEURS )
 from utils.saisie import saisir_entier
+from services.Admin_service import AdminService
 
 def menu_gestion_etudiants(admin_service: AdminService, logger: LoggerUtils):
     while True:
