@@ -1,38 +1,61 @@
-# service etudiant
-from models.Etudiant_model import EtudiantModels
+from models.Note_model import NotesModels
 from models.Absence_model import AbsenceModels
-from models.Matiere_model import MatiereModels
-from models.Professeur_model import ProfesseurModels
 
-class Etudiantservice:
+
+class EtudiantService:
 
     def __init__(self):
-        self.etudiant_model = EtudiantModels()
+        self.notes_model = NotesModels()
         self.absence_model = AbsenceModels()
-        self.matiere_model = MatiereModels()
-        self.professeur_model = ProfesseurModels()
 
-    def afficher_notes_etudiant(self, matricule):
-        etudiant = self.etudiant_model.rechercher_etudiant(matricule)
-        if etudiant:
-            notes = self.matiere_model.lister_notes_etudiant(etudiant[0])
-            return notes
-        else:
-            return None
+    # ─── Notes ───────────────────────────────────────────────────────────────────
 
-    def afficher_absences_etudiant(self, matricule):
-        etudiant = self.etudiant_model.rechercher_etudiant(matricule)
-        if etudiant:
-            absences = self.absence_model.lister_absences_etudiant(etudiant[0])
-            return absences
-        else:
-            return None
+    def voir_mes_notes(self, etudiant_id: int):
+        return self.notes_model.rechercher_note_par_etudiant(etudiant_id)
 
-    def afficher_moyenne_etudiant(self, matricule):
+    # ─── Moyennes ────────────────────────────────────────────────────────────────
 
-        etudiant = self.etudiant_model.rechercher_etudiant(matricule)
-        if etudiant:
-            moyenne = self.matiere_model.calculer_moyenne_etudiant(etudiant[0])
-            return moyenne
-        else:
-            return None
+    def moyenne_generale(self, etudiant_id: int):
+        return self.notes_model.calculer_moyenne_etudiant(etudiant_id)
+
+    def moyenne_par_matiere(self, etudiant_id: int) -> list:
+        """Calcule la moyenne par matière à partir des notes de l'étudiant."""
+        notes = self.notes_model.rechercher_note_par_etudiant(etudiant_id)
+        if not notes:
+            return []
+
+        # Regrouper les notes par matière
+        matieres: dict = {}
+        for note in notes:
+            nom_matiere = note["nom_matiere"]
+            if nom_matiere not in matieres:
+                matieres[nom_matiere] = []
+            matieres[nom_matiere].append(note["note"])
+
+        # Calculer la moyenne pour chaque matière
+        return [
+            {
+                "matiere": matiere,
+                "moyenne": round(sum(liste) / len(liste), 2),
+                "nb_notes": len(liste)
+            }
+            for matiere, liste in matieres.items()
+        ]
+
+    # ─── Absences ────────────────────────────────────────────────────────────────
+
+    def voir_mes_absences(self, etudiant_id: int):
+        return self.absence_model.rechercher_absence_par_etudiant(etudiant_id)
+
+    def total_absences(self, etudiant_id: int) -> dict:
+        absences = self.absence_model.rechercher_absence_par_etudiant(etudiant_id)
+        if not absences:
+            return {"total": 0, "justifiees": 0, "non_justifiees": 0}
+
+        justifiees = sum(1 for a in absences if a["status"] == "justifiée")
+        non_justifiees = sum(1 for a in absences if a["status"] == "non justifiée")
+        return {
+            "total": len(absences),
+            "justifiees": justifiees,
+            "non_justifiees": non_justifiees
+        }

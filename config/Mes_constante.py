@@ -113,3 +113,55 @@ GESTION_DES_UTILISATEURS = """
 ║  0. Retour                           ║
 ╚══════════════════════════════════════╝
 """
+
+# ─── Professeur ─────────────────────────────────────────────────────────────────
+
+MENU_PROFESSEUR = """
+╔══════════════════════════════════════╗
+║          ESPACE PROFESSEUR           ║
+╠══════════════════════════════════════╣
+║  1. Gérer les notes                  ║
+║  2. Gérer les absences               ║
+║  0. Déconnexion                      ║
+╚══════════════════════════════════════╝
+"""
+
+GESTION_DES_NOTES_PROF = """
+╔══════════════════════════════════════╗
+║           GESTION DES NOTES          ║
+╠══════════════════════════════════════╣
+║  1. Ajouter une note                 ║
+║  2. Voir les notes d'un étudiant     ║
+║  3. Modifier une note                ║
+║  4. Supprimer une note               ║
+║  5. Voir toutes les notes            ║
+║  0. Retour                           ║
+╚══════════════════════════════════════╝
+"""
+
+GESTION_DES_ABSENCES_PROF = """
+╔══════════════════════════════════════╗
+║         GESTION DES ABSENCES         ║
+╠══════════════════════════════════════╣
+║  1. Enregistrer une absence          ║
+║  2. Voir les absences d'un étudiant  ║
+║  3. Justifier une absence            ║
+║  4. Voir toutes les absences         ║
+║  0. Retour                           ║
+╚══════════════════════════════════════╝
+"""
+
+# ─── Étudiant ───────────────────────────────────────────────────────────────────
+
+MENU_ETUDIANT = """
+╔══════════════════════════════════════╗
+║           ESPACE ÉTUDIANT            ║
+╠══════════════════════════════════════╣
+║  1. Voir mes notes                   ║
+║  2. Ma moyenne par matière           ║
+║  3. Ma moyenne générale              ║
+║  4. Voir mes absences                ║
+║  5. Total de mes absences            ║
+║  0. Déconnexion                      ║
+╚══════════════════════════════════════╝
+"""

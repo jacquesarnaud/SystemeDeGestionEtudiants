@@ -13,6 +13,7 @@ class DatabaseManager:
         self.cusor = self.conn.cursor()
         self.create_tables()
 
+
     def create_tables(self):
         self.cusor.executescript('''
             CREATE TABLE IF NOT EXISTS utilisateurs (
@@ -122,6 +123,12 @@ class DatabaseManager:
 
         self.conn.commit()
         print("[migration] Terminée.")
+
+    def suprimer_colone_classe(self):
+            self.cusor.executescript('''
+            DROP TABLE etudiants;
+            ALTER TABLE etudiants_new RENAME TO etudiants;
+            ''')
 
     def creer_super_admin(self):
         try:

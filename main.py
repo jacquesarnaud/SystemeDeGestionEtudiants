@@ -1,14 +1,14 @@
+from database.bd import DatabaseManager
 from services.Admin_service import AdminService
 from services.connexion import ServiceConnexion
 from utils.logger import LoggerUtils
-from database.bd import DatabaseManager
-from config.Mes_constante import (
-    MENU_PRINCIPALE, CONNECTER
-)
 from utils.admin import menu_admin
+from utils.professeur import menu_professeur
+from utils.etudiant import menu_etudiant
+from config.Mes_constante import MENU_PRINCIPALE, CONNECTER
+
 
 def main():
-
     db = DatabaseManager()
     db.creer_super_admin()
 
@@ -22,36 +22,48 @@ def main():
         choix = input("Veuillez choisir une option : ").strip()
 
         if choix == '1':
-            while connexion:
-                email    = input("Email : ").strip()
-                password = input("Mot de passe : ")
+            email    = input("Email : ").strip()
+            password = input("Mot de passe : ")
 
-                if connexion.connecter(email, password):
-                    role = admin_service.recuperer_role(email)
-                    nom_user = admin_service.rechercher_utilisateur(email)
-                    nom_user_join= " ".join(nom_user)
-                    print(f"Bienvenu {nom_user_join} , Vous-etes connecté en tant que : {role}")
+            if connexion.connecter(email, password):
+                utilisateur = admin_service.user_model.rechercher_utilisateur(email)
+                role        = utilisateur["role"]
+                print(f"\nConnecté en tant que : {role.upper()}")
 
-                    if role == 'admin':
-                        menu_admin(admin_service, connexion, logger, email)
-                    elif role == 'professeur':
-                        # menu_professeur(connexion, email, classe_id)
-                        pass
-                    elif role == 'etudiant':
-                        # menu_etudiant(connexion, etudiant_id, email)
-                        pass
+                if role == 'admin':
+                    menu_admin(admin_service, connexion, logger, email)
+
+                elif role == 'professeur':
+                    professeur = admin_service.professeur_model.rechercher_professeur_par_id_user(
+                        utilisateur["id"]
+                    )
+                    if professeur:
+                        menu_professeur(connexion, email, professeur["classe_id"])
                     else:
-                        print("Rôle inconnu, contactez l'administrateur.")
+                        print("Profil professeur introuvable. Contactez l'administrateur.")
+
+                elif role == 'etudiant':
+                    etudiant = admin_service.etudiant_model.rechercher_etudiant_par_id_user(
+                        utilisateur["id"]
+                    )
+                    if etudiant:
+                        menu_etudiant(connexion, etudiant["id"], email)
+                    else:
+                        print("Profil étudiant introuvable. Contactez l'administrateur.")
+
                 else:
-                    print("Identifiants incorrects.")
+                    print("Rôle inconnu. Contactez l'administrateur.")
+            else:
+                print("Email ou mot de passe incorrect.")
 
         elif choix == '2':
             print("Au revoir !")
-            logger.log_info("L'utilisateur a quitté le programme.")
+            logger.log_info("Fin de session.")
             break
 
         else:
             print("Option invalide. Veuillez réessayer.")
+
 
 if __name__ == "__main__":
     main()
