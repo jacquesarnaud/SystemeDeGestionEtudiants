@@ -27,7 +27,6 @@ class EtudiantService:
         if not notes:
             return []
 
-        # Regrouper les notes par matière
         matieres: dict = {}
         for note in notes:
             nom_matiere = note["nom_matiere"]
@@ -35,7 +34,6 @@ class EtudiantService:
                 matieres[nom_matiere] = []
             matieres[nom_matiere].append(note["note"])
 
-        # Calculer la moyenne pour chaque matière
         return [
             {
                 "matiere": matiere,

@@ -78,10 +78,10 @@ class AdminService:
         self.etudiant_model.ajouter_etudiant(
             matricule=matricule,
             nom=nom,
-            prenom=prenom,
-            age=age,
-            classe_id=classe_id,
-            id_user=utilisateur["id"]
+            prenom = prenom,
+            age = age,
+            classe_id = classe_id,
+            id_user = utilisateur["id"]
         )
 
         return {

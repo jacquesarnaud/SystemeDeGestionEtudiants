@@ -9,7 +9,7 @@ class DatabaseManager:
         os.makedirs("./database", exist_ok=True)
 
         self.conn = sqlite3.connect("./database/DATABASSES.db")
-        self.conn.row_factory = sqlite3.Row  # permet d'accéder aux colonnes par nom
+        self.conn.row_factory = sqlite3.Row 
         self.cusor = self.conn.cursor()
         self.create_tables()
 
@@ -34,13 +34,17 @@ class DatabaseManager:
             );
 
             CREATE TABLE IF NOT EXISTS etudiants (
-                id        INTEGER PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 matricule TEXT NOT NULL UNIQUE,
-                nom       TEXT NOT NULL,
-                prenom    TEXT NOT NULL,
-                age       INTEGER NOT NULL,
-                classe    TEXT NOT NULL
-            );
+                nom TEXT NOT NULL,
+                prenom TEXT NOT NULL,
+                age INTEGER NOT NULL,
+                classe_id INTEGER NOT NULL,
+                id_user INTEGER UNIQUE,
+                FOREIGN KEY (classe_id) REFERENCES classes(id),
+                FOREIGN KEY (id_user) REFERENCES utilisateurs(id)
+                );
+            
 
             CREATE TABLE IF NOT EXISTS matieres (
                 id          INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -76,17 +80,6 @@ class DatabaseManager:
                 nom_classe TEXT NOT NULL
             )
         ''')
-
-        for nom in ['A', 'B', 'C']:
-            self.cusor.execute(
-                "INSERT OR IGNORE INTO classes (nom_classe) VALUES (?)", (nom,)
-            )
-
-
-        for matiere in ['Mathematiques', 'Physique-Chimie', 'Anglais', 'Francais']:
-            self.cusor.execute(
-                "INSERT OR IGNORE INTO matieres (nom_matiere) VALUES (?)", (matiere,)
-            )
 
         try:
             self.cusor.execute(
@@ -124,10 +117,9 @@ class DatabaseManager:
         self.conn.commit()
         print("[migration] Terminée.")
 
-    def suprimer_colone_classe(self):
+    def suprimer_table(self):
             self.cusor.executescript('''
-            DROP TABLE etudiants;
-            ALTER TABLE etudiants_new RENAME TO etudiants;
+            DROP TABLE etudiants
             ''')
 
     def creer_super_admin(self):
