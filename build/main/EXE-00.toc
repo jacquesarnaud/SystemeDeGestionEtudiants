@@ -98,7 +98,7 @@
  [],
  False,
  False,
- 1782831092,
+ 1782834857,
  [('run',
    '/home/imac-z02/SystemeDeGestionEtudiants/.env/lib/python3.12/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run',
    'EXECUTABLE')],
