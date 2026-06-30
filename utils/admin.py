@@ -10,9 +10,10 @@ from config.Mes_constante import (
 )
 from utils.generateur import generer_email,generer_mot_de_passe,generer_matricule
 
-# ════════════════════════════════════════════════════════
+
 #  GESTION DES ÉTUDIANTS
-# ════════════════════════════════════════════════════════
+
+
 
 def menu_gestion_etudiants(admin_service: AdminService, logger: LoggerUtils):
     while True:
@@ -94,9 +95,10 @@ def menu_gestion_etudiants(admin_service: AdminService, logger: LoggerUtils):
             print("Option invalide. Veuillez réessayer.")
 
 
-# ════════════════════════════════════════════════════════
+
 #  GESTION DES PROFESSEURS
-# ════════════════════════════════════════════════════════
+
+
 
 def menu_gestion_professeurs(admin_service: AdminService, logger: LoggerUtils):
     while True:
@@ -165,9 +167,9 @@ utilisateur {nom} {prenom} est creer avec succes suivant ses identifiant:
             print("Option invalide. Veuillez réessayer.")
 
 
-# ════════════════════════════════════════════════════════
+
 #  GESTION DES UTILISATEURS
-# ════════════════════════════════════════════════════════
+
 
 def menu_gestion_utilisateurs(admin_service: AdminService, logger: LoggerUtils):
     while True:
@@ -233,9 +235,9 @@ def menu_gestion_utilisateurs(admin_service: AdminService, logger: LoggerUtils):
             print("Option invalide. Veuillez réessayer.")
 
 
-# ════════════════════════════════════════════════════════
+
 #  MENU ADMIN PRINCIPAL
-# ════════════════════════════════════════════════════════
+
 
 def menu_admin(admin_service: AdminService, connexion: ServiceConnexion,
                logger: LoggerUtils, email: str):

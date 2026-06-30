@@ -8,12 +8,15 @@ class EtudiantService:
         self.notes_model = NotesModels()
         self.absence_model = AbsenceModels()
 
-    # ─── Notes ───────────────────────────────────────────────────────────────────
+
+
 
     def voir_mes_notes(self, etudiant_id: int):
         return self.notes_model.rechercher_note_par_etudiant(etudiant_id)
 
-    # ─── Moyennes ────────────────────────────────────────────────────────────────
+
+
+
 
     def moyenne_generale(self, etudiant_id: int):
         return self.notes_model.calculer_moyenne_etudiant(etudiant_id)
@@ -42,7 +45,9 @@ class EtudiantService:
             for matiere, liste in matieres.items()
         ]
 
-    # ─── Absences ────────────────────────────────────────────────────────────────
+
+
+
 
     def voir_mes_absences(self, etudiant_id: int):
         return self.absence_model.rechercher_absence_par_etudiant(etudiant_id)

@@ -98,9 +98,9 @@ def menu_notes_professeur(prof_service: ProfesseurService, classe_id: int):
             print("Option invalide. Veuillez réessayer.")
 
 
-# ════════════════════════════════════════════════════════
+
 #  SOUS-MENU ABSENCES
-# ════════════════════════════════════════════════════════
+
 
 def menu_absences_professeur(prof_service: ProfesseurService, classe_id: int):
     while True:
@@ -182,9 +182,9 @@ def menu_absences_professeur(prof_service: ProfesseurService, classe_id: int):
             print("Option invalide. Veuillez réessayer.")
 
 
-# ════════════════════════════════════════════════════════
+
 #  MENU PRINCIPAL PROFESSEUR
-# ════════════════════════════════════════════════════════
+
 
 def menu_professeur(connexion, email: str, classe_id: int):
     prof_service = ProfesseurService()

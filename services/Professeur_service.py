@@ -12,7 +12,9 @@ class ProfesseurService:
         self.etudiant_model = EtudiantModels()
         self.matiere_model = MatiereModels()
 
-    # ─── Étudiants de la classe ──────────────────────────────────────────────────
+ 
+ 
+
 
     def lister_etudiants_classe(self, classe_id: int):
         """Le professeur ne voit que les étudiants de sa propre classe."""
@@ -21,7 +23,9 @@ class ProfesseurService:
     def lister_matieres(self):
         return self.matiere_model.lister_matieres()
 
-    # ─── Notes ───────────────────────────────────────────────────────────────────
+
+
+
 
     def ajouter_note(self, etudiant_id: int, matiere_id: int, note: float) -> bool:
         if not (0 <= note <= 20):
@@ -46,7 +50,9 @@ class ProfesseurService:
     def lister_toutes_notes(self):
         return self.notes_model.lister_notes()
 
-    # ─── Absences ────────────────────────────────────────────────────────────────
+
+
+
 
     def enregistrer_absence(self, etudiant_id: int, matiere_id: int,
                             date: str, status: str):

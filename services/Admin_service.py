@@ -17,7 +17,8 @@ class AdminService:
         self.user_model = UtilisateurModels()
         self.notes_model = NotesModels()
 
-    # ─── Utilisateurs ────────────────────────────────────────────────────────────
+
+
 
     def afficher_liste_utilisateurs(self):
         return self.user_model.lister_utilisateurs()
@@ -50,7 +51,9 @@ class AdminService:
             return user["nom"], user["prenom"]
         return None
 
-    # ─── Étudiants ────
+
+
+
 
     def ajouter_etudiant(self, nom, prenom, age, classe_id) -> dict:
         
@@ -99,17 +102,17 @@ class AdminService:
     def rechercher_etudiant(self, matricule):
         return self.etudiant_model.rechercher_etudiant(matricule)
 
-    # ─── Professeurs ───────
+
+
+
     def ajouter_professeur(self, nom, prenom, matiere_id, classe_id) -> dict:
         """
         Génère automatiquement email + mot de passe
         Crée le compte utilisateur ET le profil professeur en une seule opération.
         """
-        # 1. Générer les identifiants
         email = generer_email(nom, prenom, role="professeur")
         mot_de_passe = generer_mot_de_passe()
 
-        # 2. Créer le compte utilisateur
         self.user_model.ajouter_utilisateur(
             email=email,
             mot_de_passe=mot_de_passe,
@@ -118,13 +121,11 @@ class AdminService:
             prenom=prenom
         )
 
-        # 3. Récupérer l'id du compte créé
         utilisateur = self.user_model.rechercher_utilisateur(email)
         if not utilisateur:
             print("Erreur : compte utilisateur non créé.")
             return {}
 
-        # 4. Créer le profil professeur lié via id_user
         self.professeur_model.ajouter_professeur(
             nom=nom,
             prenom=prenom,
@@ -133,7 +134,6 @@ class AdminService:
             id_user=utilisateur["id"]
         )
 
-        # 5. Retourner les identifiants pour les afficher à l'admin
         return {
             "email": email,
             "mot_de_passe": mot_de_passe
@@ -154,7 +154,8 @@ class AdminService:
     def affecter_matiere(self, professeur_id, matiere_id):
         self.professeur_model.affecter_matiere(professeur_id, matiere_id)
 
-    # ─── Matières ───────
+
+
 
     def ajouter_matiere(self, nom_matiere):
         self.matiere_model.ajouter_matiere(nom_matiere)
