@@ -20,3 +20,5 @@
 2026-06-22 14:17:11,122 - root - INFO - Connexion réussie : admin@gmail.com
 2026-06-22 14:25:31,811 - root - INFO - Connexion réussie : admin@gmail.com
 2026-06-22 14:57:16,389 - root - INFO - Connexion réussie : admin@gmail.com
+2026-06-24 14:55:21,973 - root - WARNING - Tentative de connexion échouée : adming
+2026-06-24 14:55:48,076 - root - INFO - Connexion réussie : admin@gmail.com

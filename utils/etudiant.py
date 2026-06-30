@@ -3,15 +3,10 @@ from config.Mes_constante import MENU_ETUDIANT
 from utils.saisie import pause
 
 
-# ════════════════════════════════════════════════════════
 #  MENU ÉTUDIANT
-# ════════════════════════════════════════════════════════
 
 def menu_etudiant(connexion, etudiant_id: int, email: str):
-    """
-    Correction : plus besoin de 'matricule' en paramètre —
-    toutes les requêtes utilisent etudiant_id (clé primaire).
-    """
+
     etu_service = EtudiantService()
 
     while True:
@@ -19,7 +14,6 @@ def menu_etudiant(connexion, etudiant_id: int, email: str):
         choix = input("Veuillez choisir une option : ").strip()
 
         if choix == '1':
-            # Correction : voir_mes_notes(etudiant_id) au lieu de afficher_notes_etudiant(matricule)
             notes = etu_service.voir_mes_notes(etudiant_id)
             if notes:
                 print("\n── Mes notes ──")
@@ -30,7 +24,6 @@ def menu_etudiant(connexion, etudiant_id: int, email: str):
             pause()
 
         elif choix == '2':
-            # Correction : moyenne_par_matiere(etudiant_id) au lieu de afficher_moyenne_etudiant(matricule)
             moyennes = etu_service.moyenne_par_matiere(etudiant_id)
             if moyennes:
                 print("\n── Mes moyennes par matière ──")
@@ -41,7 +34,6 @@ def menu_etudiant(connexion, etudiant_id: int, email: str):
             pause()
 
         elif choix == '3':
-            # Correction : moyenne_generale(etudiant_id)
             moyenne = etu_service.moyenne_generale(etudiant_id)
             if moyenne is not None:
                 print(f"\n  Moyenne générale : {round(moyenne, 2)}/20")
@@ -50,7 +42,6 @@ def menu_etudiant(connexion, etudiant_id: int, email: str):
             pause()
 
         elif choix == '4':
-            # Correction : voir_mes_absences(etudiant_id) au lieu de afficher_absences_etudiant(matricule)
             absences = etu_service.voir_mes_absences(etudiant_id)
             if absences:
                 print("\n── Mes absences ──")

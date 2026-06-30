@@ -4,10 +4,7 @@ from database.bd import DatabaseManager
 class UtilisateurModels(DatabaseManager):
 
     def ajouter_utilisateur(self, email, mot_de_passe, role, nom="", prenom=""):
-        """
-        Correction : nom et prenom rendus optionnels pour être compatibles
-        avec l'appel AdminService.ajouter_utilisateur(email, password, role).
-        """
+        
         try:
             self.cusor.execute(
                 '''

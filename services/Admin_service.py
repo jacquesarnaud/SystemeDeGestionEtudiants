@@ -50,19 +50,15 @@ class AdminService:
             return user["nom"], user["prenom"]
         return None
 
-    # ─── Étudiants ───────────────────────────────────────────────────────────────
+    # ─── Étudiants ────
 
     def ajouter_etudiant(self, nom, prenom, age, classe_id) -> dict:
-        """
-        Génère automatiquement matricule + email + mot de passe
-        Crée le compte utilisateur ET le profil étudiant en une seule opération.
-        """
-        # 1. Générer les identifiants
+        
+        
         matricule = generer_matricule(nom, prenom)
         email = generer_email(nom, prenom, role="etudiant")
         mot_de_passe = generer_mot_de_passe()
-
-        # 2. Créer le compte utilisateur
+        
         self.user_model.ajouter_utilisateur(
             email=email,
             mot_de_passe=mot_de_passe,
@@ -71,13 +67,11 @@ class AdminService:
             prenom=prenom
         )
 
-        # 3. Récupérer l'id du compte créé
         utilisateur = self.user_model.rechercher_utilisateur(email)
         if not utilisateur:
             print("Erreur : compte utilisateur non créé.")
             return {}
 
-        # 4. Créer le profil étudiant lié via id_user
         self.etudiant_model.ajouter_etudiant(
             matricule=matricule,
             nom=nom,
@@ -87,7 +81,6 @@ class AdminService:
             id_user=utilisateur["id"]
         )
 
-        # 5. Retourner les identifiants pour les afficher à l'admin
         return {
             "matricule": matricule,
             "email": email,
@@ -106,8 +99,7 @@ class AdminService:
     def rechercher_etudiant(self, matricule):
         return self.etudiant_model.rechercher_etudiant(matricule)
 
-    # ─── Professeurs ─────────────────────────────────────────────────────────────
-
+    # ─── Professeurs ───────
     def ajouter_professeur(self, nom, prenom, matiere_id, classe_id) -> dict:
         """
         Génère automatiquement email + mot de passe
@@ -162,7 +154,7 @@ class AdminService:
     def affecter_matiere(self, professeur_id, matiere_id):
         self.professeur_model.affecter_matiere(professeur_id, matiere_id)
 
-    # ─── Matières ────────────────────────────────────────────────────────────────
+    # ─── Matières ───────
 
     def ajouter_matiere(self, nom_matiere):
         self.matiere_model.ajouter_matiere(nom_matiere)
@@ -179,8 +171,7 @@ class AdminService:
     def rechercher_matiere(self, nom_matiere):
         return self.matiere_model.rechercher_matiere(nom_matiere)
 
-    # ─── Notes ───────────────────────────────────────────────────────────────────
-
+    # ─── Notes ────
     def ajouter_note(self, etudiant_id, matiere_id, note):
         self.notes_model.ajouter_note(etudiant_id, matiere_id, note)
 
@@ -193,7 +184,7 @@ class AdminService:
     def supprimer_note(self, note_id):
         self.notes_model.supprimer_note(note_id)
 
-    # ─── Absences ────────────────────────────────────────────────────────────────
+    # ─── Absences ──────────
 
     def ajouter_absence(self, etudiant_id, matiere_id, date, status):
         self.absence_model.ajouter_absence(etudiant_id, matiere_id, date, status)
@@ -210,8 +201,7 @@ class AdminService:
     def rechercher_absence_par_etudiant(self, etudiant_id):
         return self.absence_model.rechercher_absence_par_etudiant(etudiant_id)
 
-    # ─── Statistiques ────────────────────────────────────────────────────────────
-
+    # ─── Statistiques ────────
     def moyenne_etudiant(self, etudiant_id):
         return self.notes_model.calculer_moyenne_etudiant(etudiant_id)
 
