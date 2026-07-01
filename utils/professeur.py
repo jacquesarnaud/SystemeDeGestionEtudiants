@@ -26,11 +26,6 @@ def menu_notes_professeur(prof_service: ProfesseurService, classe_id: int):
             for e in etudiants:
                 print(f"  ID {e['id']} | {e['nom']:<15} {e['prenom']}")
 
-            matieres = prof_service.lister_matieres()
-            print("\n── Matières ──")
-            for m in matieres:
-                print(f"  ID {m['id']} | {m['nom_matiere']}")
-
             etudiant_id = saisir_entier("\nID de l'étudiant : ")
             matiere_id  = saisir_entier("ID de la matière  : ")
             note        = saisir_note("Note (0–20)        : ")
