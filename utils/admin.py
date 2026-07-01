@@ -184,7 +184,7 @@ def menu_gestion_utilisateurs(admin_service: AdminService, logger: LoggerUtils):
         elif choix == '2':
             email    = input("Email : ").strip()
             password = input("Mot de passe : ")
-            role     = input("Rôle (admin / professeur / etudiant) : ").strip().lower()
+            role     = input("Rôle (admin / professeur / etudiant) : ").strip().lower() 
             if role not in ('admin', 'professeur', 'etudiant'):
                 print("Rôle invalide.")
             else:
@@ -227,8 +227,6 @@ def menu_gestion_utilisateurs(admin_service: AdminService, logger: LoggerUtils):
 
         else:
             print("Option invalide. Veuillez réessayer.")
-
-
 
 #  MENU ADMIN PRINCIPAL
 
