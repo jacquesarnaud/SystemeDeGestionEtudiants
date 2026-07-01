@@ -30,7 +30,11 @@ class DatabaseManager:
                 nom        TEXT NOT NULL,
                 prenom     TEXT NOT NULL,
                 matiere_id INTEGER,
-                FOREIGN KEY (matiere_id) REFERENCES matieres(id)
+                classe_id  INTEGER,
+                id_user    INTEGER UNIQUE,
+                FOREIGN KEY (matiere_id) REFERENCES matieres(id),
+                FOREIGN KEY (classe_id)  REFERENCES classes(id),
+                FOREIGN KEY (id_user)    REFERENCES utilisateurs(id)
             );
 
             CREATE TABLE IF NOT EXISTS etudiants (
@@ -119,7 +123,7 @@ class DatabaseManager:
 
     def suprimer_table(self):
             self.cusor.executescript('''
-            DROP TABLE etudiants
+            DROP TABLE professeurs
             ''')
 
     def creer_super_admin(self):

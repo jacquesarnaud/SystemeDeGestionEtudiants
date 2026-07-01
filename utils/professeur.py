@@ -8,10 +8,8 @@ from config.Mes_constante import (
 from utils.saisie import pause, saisir_entier, saisir_note
 
 
-# ════════════════════════════════════════════════════════
-#  SOUS-MENU NOTES
-# ════════════════════════════════════════════════════════
 
+#  SOUS-MENU NOTES
 def menu_notes_professeur(prof_service: ProfesseurService, classe_id: int):
     while True:
         print(GESTION_DES_NOTES_PROF)

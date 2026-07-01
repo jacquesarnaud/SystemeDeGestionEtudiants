@@ -22,3 +22,22 @@
 2026-06-22 14:57:16,389 - root - INFO - Connexion réussie : admin@gmail.com
 2026-06-24 14:55:21,973 - root - WARNING - Tentative de connexion échouée : adming
 2026-06-24 14:55:48,076 - root - INFO - Connexion réussie : admin@gmail.com
+2026-06-30 23:02:11,509 - root - INFO - Connexion réussie : admin@gmail.com
+2026-06-30 23:04:23,189 - root - INFO - Connexion réussie : admin@gmail.com
+2026-06-30 23:04:55,837 - root - INFO - Étudiant + compte créés : ETU-DR-2026-5990
+2026-06-30 23:08:13,829 - root - INFO - Étudiant trouvé : ETU-DR-2026-5990
+2026-06-30 23:20:40,801 - root - INFO - Connexion réussie : rokia.doumbia@etudiant.school.ci
+2026-06-30 23:21:18,305 - root - INFO - Déconnexion : rokia.doumbia@etudiant.school.ci
+2026-06-30 23:22:22,039 - root - INFO - Connexion réussie : admin@gmail.com
+2026-06-30 23:24:03,165 - root - INFO - Professeur créé : Koné Mamadou
+2026-06-30 23:33:18,905 - root - INFO - Connexion réussie : admin@gmail.com
+2026-06-30 23:34:52,275 - root - INFO - Professeur créé : Koné Mamadou
+2026-06-30 23:36:46,966 - root - INFO - Utilisateur supprimé : ID 3
+2026-06-30 23:37:14,770 - root - INFO - Professeur créé : Koné Mamadou
+2026-06-30 23:37:35,531 - root - INFO - Déconnexion : admin@gmail.com
+2026-06-30 23:38:33,533 - root - WARNING - Tentative de connexion échouée : mamadou.koné@professeur.school.ci
+2026-06-30 23:38:50,065 - root - WARNING - Tentative de connexion échouée : mamadou.koné@professeur.school.ci
+2026-06-30 23:39:49,661 - root - INFO - Connexion réussie : mamadou.koné@professeur.school.ci
+2026-07-01 09:10:13,947 - root - WARNING - Tentative de connexion échouée : admai
+2026-07-01 09:10:17,216 - root - WARNING - Tentative de connexion échouée : dm
+2026-07-01 09:10:43,477 - root - WARNING - Tentative de connexion échouée : admain@gmail.com

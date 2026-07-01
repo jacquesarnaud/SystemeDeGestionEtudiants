@@ -106,13 +106,6 @@ def menu_gestion_professeurs(admin_service: AdminService, logger: LoggerUtils):
         choix = input("Veuillez choisir une option : ").strip()
 
         if choix == '1':
-            # Afficher les matières disponibles
-            matieres = admin_service.lister_matieres()
-            if matieres:
-                print("\n── Matières disponibles ──")
-                for m in matieres:
-                    print(f"  ID {m['id']} | {m['nom_matiere']}")
-
             nom        = input("\nNom : ").strip()
             prenom     = input("Prénom : ").strip()
             matiere_id = saisir_entier("ID de la matière (1=Mathematiques / 2=Physique-Chimie / 3=Anglais /4=Francais) : ")
@@ -126,6 +119,7 @@ utilisateur {nom} {prenom} est creer avec succes suivant ses identifiant:
           Email        : {identifiants['email']}
           Mot de passe : {identifiants['mot_de_passe']}
        !!! Remettez ces informations à l'étudiant !!!""")
+                    
                     logger.log_info(f"Professeur créé : {nom} {prenom}")
             pause()
 

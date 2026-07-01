@@ -20,39 +20,38 @@ def main():
         print(MENU_PRINCIPALE)
         print(CONNECTER)
         choix = input("Veuillez choisir une option : ").strip()
-
         if choix == '1':
             email    = input("Email : ").strip()
             password = input("Mot de passe : ")
+            while not connexion.connecter(email, password):
+                if connexion.connecter(email, password):
+                    utilisateur = admin_service.user_model.rechercher_utilisateur(email)
+                    role        = utilisateur["role"]
+                    print(f"\nConnecté en tant que : {role.upper()}")
 
-            if connexion.connecter(email, password):
-                utilisateur = admin_service.user_model.rechercher_utilisateur(email)
-                role        = utilisateur["role"]
-                print(f"\nConnecté en tant que : {role.upper()}")
+                    if role == 'admin':
+                        menu_admin(admin_service, connexion, logger, email)
 
-                if role == 'admin':
-                    menu_admin(admin_service, connexion, logger, email)
+                    elif role == 'professeur':
+                        professeur = admin_service.professeur_model.rechercher_professeur_par_id_user(
+                            utilisateur["id"]
+                        )
+                        if professeur:
+                            menu_professeur(connexion, email, professeur["classe_id"])
+                        else:
+                            print("Profil professeur introuvable. Contactez l'administrateur.")
 
-                elif role == 'professeur':
-                    professeur = admin_service.professeur_model.rechercher_professeur_par_id_user(
-                        utilisateur["id"]
-                    )
-                    if professeur:
-                        menu_professeur(connexion, email, professeur["classe_id"])
+                    elif role == 'etudiant':
+                        etudiant = admin_service.etudiant_model.rechercher_etudiant_par_id_user(
+                            utilisateur["id"]
+                        )
+                        if etudiant:
+                            menu_etudiant(connexion, etudiant["id"], email)
+                        else:
+                            print("Profil étudiant introuvable. Contactez l'administrateur.")
+
                     else:
-                        print("Profil professeur introuvable. Contactez l'administrateur.")
-
-                elif role == 'etudiant':
-                    etudiant = admin_service.etudiant_model.rechercher_etudiant_par_id_user(
-                        utilisateur["id"]
-                    )
-                    if etudiant:
-                        menu_etudiant(connexion, etudiant["id"], email)
-                    else:
-                        print("Profil étudiant introuvable. Contactez l'administrateur.")
-
-                else:
-                    print("Rôle inconnu. Contactez l'administrateur.")
+                        print("Rôle inconnu. Contactez l'administrateur.")
             else:
                 print("Email ou mot de passe incorrect.")
 
