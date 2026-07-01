@@ -6,7 +6,8 @@ from config.Mes_constante import (
     OPTION_PRINCIPALE_ADMIN,
     GESTION_DES_ETUDIANTS,
     GESTION_DES_PROFESSEURS,
-    GESTION_DES_UTILISATEURS
+    GESTION_DES_UTILISATEURS,
+    STATISTIQUES
 )
 from utils.generateur import generer_email,generer_mot_de_passe,generer_matricule
 
@@ -228,6 +229,20 @@ def menu_gestion_utilisateurs(admin_service: AdminService, logger: LoggerUtils):
         else:
             print("Option invalide. Veuillez réessayer.")
 
+def statistique(admin_service: AdminService):
+    while True:
+        print(STATISTIQUES)
+        choix = input("Veuillez choisir une option : ").strip()
+        if choix == "1":
+            meilleur = admin_service.meilleure_etudiant()
+            if meilleur :
+                for e in meilleur:
+                 print(e)
+
+        elif choix == "0":
+            break
+        else:
+            print("Option invalide. Veuillez réessayer.")
 #  MENU ADMIN PRINCIPAL
 
 
@@ -243,6 +258,8 @@ def menu_admin(admin_service: AdminService, connexion: ServiceConnexion,
             menu_gestion_professeurs(admin_service, logger)
         elif choix == '3':
             menu_gestion_utilisateurs(admin_service, logger)
+        elif choix == "4":
+            statistique(admin_service)
         elif choix == '0':
             connexion.deconnecter(email)
             break

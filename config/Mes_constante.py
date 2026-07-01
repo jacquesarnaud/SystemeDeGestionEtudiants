@@ -9,6 +9,7 @@ OPTION_PRINCIPALE_ADMIN = """
 [1] Gestion des Étudiants
 [2] Gestion des Professeurs
 [3] Gestion des Utilisateurs
+[4] Statistique
 [0] Deconnexion
 """
 
@@ -162,4 +163,14 @@ MENU_ETUDIANT = """
 ║  5. Total de mes absences            ║
 ║  0. Déconnexion                      ║
 ╚══════════════════════════════════════╝
+"""
+
+STATISTIQUES = """
+╔══════════════════════════════════════╗
+║            STATISTIQUES              ║
+╠══════════════════════════════════════╣
+║  1. Voir meilleur eleve              ║      
+║  0. Retour                           ║
+╚══════════════════════════════════════╝
+
 """
